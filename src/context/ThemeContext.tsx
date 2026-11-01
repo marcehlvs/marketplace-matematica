@@ -11,7 +11,8 @@ function initialTheme(): Theme {
   } catch {
     /* almacenamiento no disponible */
   }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // El sitio es oscuro por defecto; la persona puede pasar a claro con el botón.
+  return 'dark';
 }
 
 const ThemeContext = createContext<{ theme: Theme; toggle: () => void } | null>(null);

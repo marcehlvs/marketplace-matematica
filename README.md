@@ -34,6 +34,8 @@ Nombre provisorio: **Mate Apps** (se cambia en `src/config.ts` y `index.html`).
 - [ ] Crear el primer admin a mano (ver "Primer admin" abajo).
 - [ ] Cargar las apps reales desde `/admin` (los datos de `src/data/demoApps.ts` son solo de ejemplo: nombres, niveles, precios y URLs son marcadores).
 - [ ] Definir marca definitiva (nombre, color primario en `src/index.css`, logo/favicon).
+- [ ] Agregar el video/imagen de la portada en `public/media/` (ver "Diseño y portada animada").
+- [ ] Reemplazar las portadas generadas por capturas reales de cada app (campo "URL de la portada" en `/admin`).
 - [ ] Desplegar en Hosting: `npm run build` y `firebase deploy --only hosting`.
 - [ ] Agregar el dominio del sitio a "Dominios autorizados" en Authentication.
 
@@ -64,6 +66,27 @@ Antes de cobrar en serio hay que decidir cómo proteger el acceso a cada app (po
 También: el formulario de presupuestos acepta envíos de cualquier visitante (con límites de tamaño en las reglas). Para evitar spam conviene activar **Firebase App Check** más adelante.
 
 ---
+
+## Diseño y portada animada
+
+Estética inspirada en sitios tipo "portfolio cinematográfico": **oscuro por defecto**, títulos gigantes en tipografía ancha (Archivo, peso 900), barra de navegación flotante de vidrio, degradé violeta de marca, texto que se "enciende" al hacer scroll, botones magnéticos y contadores animados. Hay modo claro con el botón del sol/luna.
+
+- Librería de animación: `motion` (`src/components/motion/`: `Reveal`, `ScrollText`, `Magnetic`, `CountUp`).
+- Portada: `src/components/home/` (`Hero`, `MathField` = fondo de funciones animadas en canvas, `HeroMedia` = tu video/imagen, `Marquee`).
+- Todo respeta **"reducir movimiento"** del sistema (sin animaciones) y los efectos magnéticos solo actúan con mouse.
+- Colores, tipografías, radios y sombras: `src/index.css`. Para otra paleta, cambiar `--color-brand-from`, `--color-brand-to` y `--color-primary` (en claro y oscuro).
+
+### Cómo poner tu video o personaje (hecho con otra IA)
+
+Copiá UN archivo en `public/media/` con alguno de estos nombres (se prueban en este orden): `hero.webm`, `hero.mp4`, `hero.webp`, `hero.png`. No hay que tocar código: si el archivo existe, aparece delante del título, centrado abajo; si no existe, se ve solo el fondo de funciones.
+
+- **Con fondo transparente** (ideal): `hero.png`/`hero.webp` con alfa, o `hero.webm` con alfa.
+- **Con fondo negro**: usá `hero.mp4`/`hero.webm` y poné `HERO_MEDIA_BLACK_BACKGROUND = true` en `src/config.ts`; el negro se funde con la portada.
+- Formato sugerido: vertical u horizontal, el sujeto centrado y que ocupe el alto; 1080–1600 px de alto; video en loop de 5–8 s, sin audio, **menos de 3 MB** (si lo ven desde celular).
+- Paleta que combina: violeta `#6c47ff`, magenta `#ff5ad9`, cian `#5ee6ff` sobre negro.
+- Los videos pesados cargan lento en celulares de escuela: conviene un `hero.webp` liviano si el video no es indispensable.
+
+Ideas para generar: un personaje 3D amigable (mascota) con compás/transportador/regla, o una forma geométrica 3D flotando (poliedro, onda, cinta de Möbius).
 
 ## Plan para proteger las apps (a decidir antes de cobrar)
 

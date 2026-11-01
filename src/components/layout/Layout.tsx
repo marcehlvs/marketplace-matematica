@@ -17,6 +17,9 @@ function ScrollToTop() {
 
 export function Layout() {
   const { demo } = useAuth();
+  const { pathname } = useLocation();
+  // La portada ocupa toda la pantalla y va por debajo de la barra flotante; el resto deja lugar arriba.
+  const isHome = pathname === '/';
   return (
     <div className="flex min-h-dvh flex-col">
       <ScrollToTop />
@@ -35,7 +38,7 @@ export function Layout() {
         </div>
       )}
       <Header />
-      <main id="contenido" tabIndex={-1} className="flex-1 py-8 outline-none md:py-12">
+      <main id="contenido" tabIndex={-1} className={isHome ? 'flex-1 outline-none' : 'flex-1 pb-8 pt-28 outline-none md:pb-12 md:pt-32'}>
         <Outlet />
       </main>
       <Footer />

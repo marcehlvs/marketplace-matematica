@@ -16,10 +16,10 @@ export function PageHeader({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:items-end md:justify-between">
+    <div className="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{title}</h1>
-        {description && <p className="mt-1 max-w-2xl text-text-muted">{description}</p>}
+        <h1 className="display text-3xl md:text-5xl">{title}</h1>
+        {description && <p className="mt-3 max-w-2xl text-lg text-text-muted">{description}</p>}
       </div>
       {action}
     </div>

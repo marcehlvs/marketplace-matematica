@@ -7,14 +7,14 @@
       name="description"
       content="Apps de matemática listas para usar en el aula y servicio de creación de apps educativas a medida."
     />
-    <meta name="theme-color" content="#4338ca" />
+    <meta name="theme-color" content="#07070b" />
     <title>Mate Apps — Apps educativas</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script>
       try {
         var t = localStorage.getItem('mm:theme');
         if (t !== 'light' && t !== 'dark') {
-          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          t = 'dark';
         }
         document.documentElement.dataset.theme = t;
       } catch (e) {}

@@ -1,0 +1,99 @@
+@import 'tailwindcss';
+
+/*
+ * TOKENS DE DISEÑO
+ * Todo el color, la tipografía, los radios y las sombras salen de acá.
+ * Los componentes usan clases como bg-surface, text-text-muted, border-border...
+ * Para el modo oscuro se redefinen los MISMOS tokens (ver más abajo).
+ * Espaciado: se usa la escala de Tailwind (múltiplos de 4px).
+ */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Superficies */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef2f7;
+
+  /* Bordes: "border" para divisores y tarjetas, "border-strong" para controles (contraste 3:1+) */
+  --color-border: #dbe2ea;
+  --color-border-strong: #64748b;
+
+  /* Texto (contraste AA sobre bg y surface) */
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+
+  /* Marca y estados */
+  --color-primary: #4338ca;
+  --color-primary-hover: #3730a3;
+  --color-primary-contrast: #ffffff;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --color-danger-contrast: #ffffff;
+  --color-focus: #4338ca;
+
+  /* Radios y sombras */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.06), 0 1px 3px 0 rgb(15 23 42 / 0.08);
+  --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.12), 0 2px 6px -2px rgb(15 23 42 / 0.08);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #0b1020;
+  --color-surface: #131a2e;
+  --color-surface-2: #1c2540;
+  --color-border: #2a3552;
+  --color-border-strong: #8b95ab;
+  --color-text: #e8ecf5;
+  --color-text-muted: #a8b2c7;
+  --color-primary: #8b93ff;
+  --color-primary-hover: #a3a9ff;
+  --color-primary-contrast: #0b1020;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --color-danger-contrast: #1a0b0b;
+  --color-focus: #a3a9ff;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 6px 16px -2px rgb(0 0 0 / 0.5);
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

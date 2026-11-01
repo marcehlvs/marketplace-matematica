@@ -1,0 +1,59 @@
+rules_version = '2';
+
+// Reglas pensadas para el plan gratuito (sin Cloud Functions).
+// El primer admin se crea a mano: en la consola de Firestore, en users/{uid}, poner role = "admin".
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Perfil: cada persona crea el suyo siempre con rol "user". Solo un admin cambia roles.
+    match /users/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.role == 'user';
+      allow update: if isAdmin();
+    }
+
+    // Catálogo: lo publicado es público; el resto y toda escritura, solo admin.
+    match /apps/{appId} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Presupuestos de servicios: cualquiera puede enviar uno (con límites); solo el admin los lee.
+    match /quotes/{quoteId} {
+      allow create: if request.resource.data.description.size() <= 2000
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.status == 'new';
+      allow read, update: if isAdmin();
+    }
+
+    // Pedidos de compra: los crea quien compra (pendientes); los aprueba el admin.
+    match /orders/{orderId} {
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending';
+      allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+      allow update: if isAdmin();
+    }
+
+    // Accesos: el admin otorga; cada persona puede reclamar solo apps GRATUITAS.
+    // Cuando llegue Mercado Pago, esta regla pasa a admin-only y escribe el webhook (Cloud Functions).
+    match /entitlements/{entitlementId} {
+      allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+      allow create: if isAdmin()
+        || (signedIn()
+          && request.resource.data.uid == request.auth.uid
+          && entitlementId == request.auth.uid + '_' + request.resource.data.appId
+          && get(/databases/$(database)/documents/apps/$(request.resource.data.appId)).data.price == 0);
+      allow update, delete: if isAdmin();
+    }
+  }
+}

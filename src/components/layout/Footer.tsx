@@ -16,6 +16,9 @@ export function Footer() {
           <Link to="/servicios" className="hover:text-text">
             Servicios
           </Link>
+          <Link to="/ayuda" className="hover:text-text">
+            Ayuda
+          </Link>
         </nav>
       </Container>
       <p

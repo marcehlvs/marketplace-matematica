@@ -31,8 +31,8 @@ Nombre provisorio: **Mate Apps** (se cambia en `src/config.ts` y `index.html`).
 - [ ] Crear/elegir el proyecto Firebase, activar **Authentication** (Google y email/contraseña) y **Firestore**.
 - [ ] Copiar `.env.example` a `.env.local` y completar las 4 variables.
 - [ ] Publicar las reglas: `firebase deploy --only firestore:rules`.
-- [ ] Crear el primer admin a mano (ver "Primer admin" abajo).
-- [ ] Cargar las apps reales desde `/admin` (los datos de `src/data/demoApps.ts` son solo de ejemplo: nombres, niveles, precios y URLs son marcadores).
+- [ ] Seguir **[PUBLICAR.md](./PUBLICAR.md)**: crear el proyecto Firebase, publicar reglas, crear el primer admin y desplegar el sitio.
+- [ ] Cargar las apps reales: `node scripts/import-repos.mjs` genera `catalogo-importado.json` desde las cuentas de GitHub (excluye lo que no es de una materia; se edita en `scripts/import-config.json`) y se sube en Admin → Apps → "Importar catálogo". Entra todo como borrador: faltan revisar precios, portadas y URLs.
 - [ ] Definir marca definitiva (nombre, color primario en `src/index.css`, logo/favicon).
 - [ ] (Opcional) Agregar una pieza en primer plano para la portada: `public/media/hero.png|webp|webm|mp4` (ver "Diseño y portada animada").
 - [ ] Reemplazar las portadas generadas por capturas reales de cada app (campo "URL de la portada" en `/admin`).

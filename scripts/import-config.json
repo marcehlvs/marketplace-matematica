@@ -1,0 +1,20 @@
+{
+  "accounts": ["marcehlvs", "bejarano-matematica"],
+  "exclude": [
+    "marketplace-matematica", "tpfinal-lvl2", "Biblioteca-AS", "biblioteca-web", "pokedex-web",
+    "integradorCodoACodo4.0", "prueba-repo", "gym-bro", "cumple-lisandro", "presentismo-5to",
+    "turnos-barberia-mvc", "barberia-turnos-mvc"
+  ],
+  "excludePatterns": [
+    "biblioteca", "tpfinal", "tp-final", "pokedex", "prueba", "(^|[-_])test", "gym", "cumple", "invitacion",
+    "pijamada", "encuesta", "presentismo", "barber", "turnos", "pagos", "cuotas", "portfolio",
+    "codoacodo", "codo-a-codo", "integrador", "construccion", "\\.github\\.io$", "^\\.github$", "dotfiles"
+  ],
+  "schoolKeywords": [
+    "matem", "math", "algebra", "álgebra", "geometr", "integral", "deriv", "estad", "funcion", "función",
+    "ecuacion", "ecuación", "factor", "tabla", "multiplic", "decimal", "fraccion", "fracción", "trigono",
+    "polinom", "logarit", "probabil", "analisis", "análisis", "aritm", "numeros", "números", "enteros",
+    "potenc", "geograf", "geography", "mezcla", "ciencia", "fisica", "física", "quimica", "química",
+    "lengua", "historia", "ingreso", "olimpiada", "modulo", "módulo", "rectas", "limite", "límite"
+  ]
+}

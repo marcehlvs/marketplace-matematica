@@ -28,18 +28,18 @@
   --color-text-muted: #4d4a66;
 
   /* Marca: "primary" sirve para texto/acentos; el degradé de marca es para rellenos con texto blanco */
-  --color-primary: #5b3df0;
-  --color-primary-hover: #4a2ed6;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
   --color-primary-contrast: #ffffff;
-  --color-brand-from: #5b3df0;
-  --color-brand-to: #8e36e8;
+  --color-brand-from: #4f46e5;
+  --color-brand-to: #4f46e5;
 
   /* Estados */
   --color-success: #15803d;
   --color-warning: #b45309;
   --color-danger: #b91c1c;
   --color-danger-contrast: #ffffff;
-  --color-focus: #5b3df0;
+  --color-focus: #4f46e5;
 
   /* Radios y sombras */
   --radius-sm: 0.5rem;
@@ -66,16 +66,16 @@
   --color-border-strong: #8a8ca6;
   --color-text: #f5f5fa;
   --color-text-muted: #a9abc4;
-  --color-primary: #a28bff;
-  --color-primary-hover: #bba9ff;
+  --color-primary: #8b93ff;
+  --color-primary-hover: #a5abff;
   --color-primary-contrast: #0b0614;
   --color-success: #4ade80;
   --color-warning: #fbbf24;
   --color-danger: #f87171;
   --color-danger-contrast: #1a0b0b;
-  --color-focus: #bba9ff;
+  --color-focus: #a5abff;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
-  --shadow-md: 0 16px 40px -12px rgb(124 92 255 / 0.45);
+  --shadow-md: 0 12px 32px -14px rgb(0 0 0 / 0.7);
 }
 
 @layer base {
@@ -133,7 +133,7 @@
 
   /* Texto con degradé metálico (solo para títulos grandes) */
   .text-metal {
-    background: linear-gradient(180deg, #ffffff 15%, #8f91ad 100%);
+    background: linear-gradient(180deg, #ffffff 30%, #b4b6cc 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -141,7 +141,7 @@
 
   /* Texto con degradé de marca */
   .text-brand {
-    background: linear-gradient(90deg, #a28bff, #ff7be5);
+    background: linear-gradient(90deg, #c7caff, #8b93ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

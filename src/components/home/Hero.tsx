@@ -31,7 +31,7 @@ export function Hero() {
       <HeroBackdrop />
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-[40%] -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/25 blur-3xl"
+        className="absolute left-1/2 top-[40%] -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/10 blur-3xl"
       />
       <div
         aria-hidden="true"
@@ -47,7 +47,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-4 py-1.5 text-sm font-medium text-text-muted backdrop-blur"
           >
-            <span className="size-2 rounded-full bg-linear-to-r from-brand-from to-brand-to" aria-hidden="true" />
+            <span className="size-2 rounded-full bg-primary" aria-hidden="true" />
             Apps para el aula · 1.º a 6.º año
           </motion.p>
           <h1 className="display text-[clamp(1.4rem,10.2vw,12rem)] md:text-[clamp(1.6rem,9.2vw,12rem)]">

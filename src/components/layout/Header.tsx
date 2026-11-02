@@ -38,7 +38,7 @@ export function Header() {
       <div className="mx-auto max-w-5xl px-3 pt-3 md:px-6">
         <div className={cn(panel, 'flex h-14 items-center justify-between gap-2 pl-4 pr-2')}>
           <Link to="/" className="flex items-center gap-2 rounded-full font-bold">
-            <span className="flex size-8 items-center justify-center rounded-full bg-linear-to-br from-brand-from to-brand-to text-white">
+            <span className="flex size-8 items-center justify-center rounded-full bg-primary text-primary-contrast">
               <Sigma className="size-4" aria-hidden="true" />
             </span>
             {BRAND}

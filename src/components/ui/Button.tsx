@@ -10,7 +10,7 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    'bg-linear-to-r from-brand-from to-brand-to text-white shadow-md hover:brightness-110 active:brightness-95',
+    'bg-primary text-primary-contrast shadow-md hover:bg-primary-hover',
   secondary: 'border border-border-strong bg-surface/60 text-text backdrop-blur hover:bg-surface-2',
   ghost: 'text-text hover:bg-surface-2',
   danger: 'bg-danger text-danger-contrast hover:opacity-90',

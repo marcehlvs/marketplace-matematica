@@ -37,7 +37,7 @@ function BackdropVideo({ src }: { src: string }) {
         ref={ref}
         src={src}
         poster={POSTER}
-        className="absolute inset-0 -z-10 size-full object-cover"
+        className="absolute inset-0 -z-10 size-full object-cover saturate-50 brightness-75"
         aria-hidden="true"
         tabIndex={-1}
         muted
@@ -48,7 +48,7 @@ function BackdropVideo({ src }: { src: string }) {
         preload={reduce ? 'metadata' : 'auto'}
       />
       {/* Capas para que el título se lea y el video se funda con el resto de la página */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-bg/20" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-bg/35" />
       <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-48 bg-linear-to-b from-bg/85 to-transparent" />
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-linear-to-t from-bg to-transparent" />
     </>

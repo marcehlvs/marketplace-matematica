@@ -81,7 +81,7 @@ export default function Home() {
       <section data-theme="dark" className="relative isolate overflow-hidden bg-bg py-24 text-text md:py-40">
         <div
           aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -z-10 size-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/20 blur-3xl"
+          className="absolute left-1/2 top-1/2 -z-10 size-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/8 blur-3xl"
         />
         <Container className="text-center">
           <p className="mb-6 text-sm font-semibold uppercase tracking-widest text-primary">¿Otra materia?</p>

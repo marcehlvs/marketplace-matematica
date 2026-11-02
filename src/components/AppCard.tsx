@@ -26,7 +26,7 @@ export function AppCard({ app }: { app: WithId<AppData> }) {
             <p className="text-lg font-bold">{formatPrice(app.price)}</p>
             <span
               aria-hidden="true"
-              className="flex size-9 items-center justify-center rounded-full border border-border-strong text-text transition group-hover:border-transparent group-hover:bg-linear-to-r group-hover:from-brand-from group-hover:to-brand-to group-hover:text-white"
+              className="flex size-9 items-center justify-center rounded-full border border-border-strong text-text transition group-hover:border-transparent group-hover:bg-primary group-hover:text-primary-contrast"
             >
               <ArrowUpRight className="size-4" />
             </span>

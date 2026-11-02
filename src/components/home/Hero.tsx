@@ -3,8 +3,8 @@ import { ArrowDown } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Magnetic } from '../motion/Magnetic';
 import { buttonClasses } from '../ui/Button';
+import { HeroBackdrop } from './HeroBackdrop';
 import { HeroMedia } from './HeroMedia';
-import { MathField } from './MathField';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -28,7 +28,7 @@ function Line({ children, delay }: { children: string; delay: number }) {
 export function Hero() {
   return (
     <section data-theme="dark" className="relative isolate flex min-h-svh flex-col overflow-hidden bg-bg text-text">
-      <MathField className="absolute inset-0 -z-10 size-full" />
+      <HeroBackdrop />
       <div
         aria-hidden="true"
         className="absolute left-1/2 top-[40%] -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/25 blur-3xl"

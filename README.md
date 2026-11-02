@@ -34,7 +34,7 @@ Nombre provisorio: **Mate Apps** (se cambia en `src/config.ts` y `index.html`).
 - [ ] Crear el primer admin a mano (ver "Primer admin" abajo).
 - [ ] Cargar las apps reales desde `/admin` (los datos de `src/data/demoApps.ts` son solo de ejemplo: nombres, niveles, precios y URLs son marcadores).
 - [ ] Definir marca definitiva (nombre, color primario en `src/index.css`, logo/favicon).
-- [ ] Agregar el video/imagen de la portada en `public/media/` (ver "Diseño y portada animada").
+- [ ] (Opcional) Agregar una pieza en primer plano para la portada: `public/media/hero.png|webp|webm|mp4` (ver "Diseño y portada animada").
 - [ ] Reemplazar las portadas generadas por capturas reales de cada app (campo "URL de la portada" en `/admin`).
 - [ ] Desplegar en Hosting: `npm run build` y `firebase deploy --only hosting`.
 - [ ] Agregar el dominio del sitio a "Dominios autorizados" en Authentication.
@@ -76,17 +76,26 @@ Estética inspirada en sitios tipo "portfolio cinematográfico": **oscuro por de
 - Todo respeta **"reducir movimiento"** del sistema (sin animaciones) y los efectos magnéticos solo actúan con mouse.
 - Colores, tipografías, radios y sombras: `src/index.css`. Para otra paleta, cambiar `--color-brand-from`, `--color-brand-to` y `--color-primary` (en claro y oscuro).
 
-### Cómo poner tu video o personaje (hecho con otra IA)
+### Video y piezas de la portada (hechos con otra IA)
 
-Copiá UN archivo en `public/media/` con alguno de estos nombres (se prueban en este orden): `hero.webm`, `hero.mp4`, `hero.webp`, `hero.png`. No hay que tocar código: si el archivo existe, aparece delante del título, centrado abajo; si no existe, se ve solo el fondo de funciones.
+La portada tiene **dos espacios** en `public/media/`. No hay que tocar código: si el archivo existe se usa; si no, se ve el fondo de funciones animado que se dibuja en código.
 
-- **Con fondo transparente** (ideal): `hero.png`/`hero.webp` con alfa, o `hero.webm` con alfa.
-- **Con fondo negro**: usá `hero.mp4`/`hero.webm` y poné `HERO_MEDIA_BLACK_BACKGROUND = true` en `src/config.ts`; el negro se funde con la portada.
-- Formato sugerido: vertical u horizontal, el sujeto centrado y que ocupe el alto; 1080–1600 px de alto; video en loop de 5–8 s, sin audio, **menos de 3 MB** (si lo ven desde celular).
+**1. Video de FONDO (detrás del título)** — ya incluido
+- `hero-bg.mp4` (o `hero-bg.webm`) + `hero-bg-poster.webp` (imagen que se ve mientras carga, con "reducir movimiento" o si el celular bloquea el autoplay).
+- El incluido es el video de curvas violeta/magenta con ecuaciones: 1600×900, 24 fps, 6,9 s, **1,5 MB**, sin audio, con el loop cerrado con un fundido.
+- Se pausa solo cuando la portada sale de pantalla.
+- Para cambiarlo, reemplazá los dos archivos. Si el nuevo video no cierra bien el loop, este comando lo comprime y lo cierra (reemplazar `X` por el largo del fundido en segundos y `FIN` por `duración - X`):
+  ```
+  ffmpeg -i original.mp4 -an -filter_complex "[0:v]scale=1600:-2,fps=24,split=3[a][b][c];[a]trim=0:X,setpts=PTS-STARTPTS[head];[b]trim=X:FIN,setpts=PTS-STARTPTS[mid];[c]trim=FIN:DURACION,setpts=PTS-STARTPTS[tail];[tail][head]xfade=transition=fade:duration=X:offset=0[x];[mid][x]concat=n=2:v=1:a=0[v]" -map "[v]" -c:v libx264 -preset slow -crf 28 -pix_fmt yuv420p -movflags +faststart hero-bg.mp4
+  ```
+  y el póster: `ffmpeg -ss 3 -i hero-bg.mp4 -frames:v 1 -c:v libwebp -quality 72 hero-bg-poster.webp`.
+
+**2. Pieza en PRIMER PLANO (delante del título)** — opcional, todavía no hay
+- Copiá UN archivo: `hero.webm`, `hero.mp4`, `hero.webp` o `hero.png` (se prueban en ese orden). Aparece centrado abajo, delante de las letras, como el personaje de las referencias.
+- **Con fondo transparente** (ideal): PNG/WebP con alfa, o WebM con alfa.
+- **Con fondo negro**: video y `HERO_MEDIA_BLACK_BACKGROUND = true` en `src/config.ts`.
+- Ideas: personaje 3D amigable con compás/transportador/regla, o una forma geométrica 3D flotando (poliedro, cinta de Möbius). Una imagen liviana rinde más que un video en celulares de escuela.
 - Paleta que combina: violeta `#6c47ff`, magenta `#ff5ad9`, cian `#5ee6ff` sobre negro.
-- Los videos pesados cargan lento en celulares de escuela: conviene un `hero.webp` liviano si el video no es indispensable.
-
-Ideas para generar: un personaje 3D amigable (mascota) con compás/transportador/regla, o una forma geométrica 3D flotando (poliedro, onda, cinta de Möbius).
 
 ## Plan para proteger las apps (a decidir antes de cobrar)
 

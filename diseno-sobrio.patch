@@ -1,0 +1,219 @@
+From 389f8918d1e8a927c33e82f28f427beae884986a Mon Sep 17 00:00:00 2001
+From: marcehlvs <m4rcehlvs@gmail.com>
+Date: Mon, 2 Nov 2026 05:04:32 +0000
+Subject: [PATCH] =?UTF-8?q?Dise=C3=B1o=20m=C3=A1s=20sobrio:=20un=20solo=20?=
+ =?UTF-8?q?acento=20=C3=ADndigo,=20sin=20gradientes=20chillones?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011twtumLQR5XogD7yKveh4F
+---
+ src/components/AppCard.tsx           |  2 +-
+ src/components/AppCover.tsx          |  2 +-
+ src/components/home/Hero.tsx         |  4 ++--
+ src/components/home/HeroBackdrop.tsx |  4 ++--
+ src/components/home/MathField.tsx    |  6 +++---
+ src/components/layout/Header.tsx     |  2 +-
+ src/components/ui/Button.tsx         |  2 +-
+ src/index.css                        | 22 +++++++++++-----------
+ src/pages/Home.tsx                   |  2 +-
+ 9 files changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/src/components/AppCard.tsx b/src/components/AppCard.tsx
+index bb5dec5..03cdd2b 100644
+--- a/src/components/AppCard.tsx
++++ b/src/components/AppCard.tsx
+@@ -26,7 +26,7 @@ export function AppCard({ app }: { app: WithId<AppData> }) {
+             <p className="text-lg font-bold">{formatPrice(app.price)}</p>
+             <span
+               aria-hidden="true"
+-              className="flex size-9 items-center justify-center rounded-full border border-border-strong text-text transition group-hover:border-transparent group-hover:bg-linear-to-r group-hover:from-brand-from group-hover:to-brand-to group-hover:text-white"
++              className="flex size-9 items-center justify-center rounded-full border border-border-strong text-text transition group-hover:border-transparent group-hover:bg-primary group-hover:text-primary-contrast"
+             >
+               <ArrowUpRight className="size-4" />
+             </span>
+diff --git a/src/components/AppCover.tsx b/src/components/AppCover.tsx
+index 02c23e8..1ae6258 100644
+--- a/src/components/AppCover.tsx
++++ b/src/components/AppCover.tsx
+@@ -38,7 +38,7 @@ export function AppCover({
+       aria-label={alt || undefined}
+       aria-hidden={alt ? undefined : true}
+       className={cn('flex h-36 w-full items-center justify-center text-white', className)}
+-      style={{ background: `linear-gradient(135deg, hsl(${hue} 65% 38%), hsl(${(hue + 45) % 360} 70% 28%))` }}
++      style={{ background: `linear-gradient(135deg, hsl(${hue} 28% 24%), hsl(${(hue + 25) % 360} 32% 14%))` }}
+     >
+       <Icon className="size-14 opacity-90" aria-hidden="true" strokeWidth={1.5} />
+     </div>
+diff --git a/src/components/home/Hero.tsx b/src/components/home/Hero.tsx
+index bac3701..9c133e9 100644
+--- a/src/components/home/Hero.tsx
++++ b/src/components/home/Hero.tsx
+@@ -31,7 +31,7 @@ export function Hero() {
+       <HeroBackdrop />
+       <div
+         aria-hidden="true"
+-        className="absolute left-1/2 top-[40%] -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/25 blur-3xl"
++        className="absolute left-1/2 top-[40%] -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/10 blur-3xl"
+       />
+       <div
+         aria-hidden="true"
+@@ -47,7 +47,7 @@ export function Hero() {
+             transition={{ duration: 0.8, delay: 0.1 }}
+             className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-4 py-1.5 text-sm font-medium text-text-muted backdrop-blur"
+           >
+-            <span className="size-2 rounded-full bg-linear-to-r from-brand-from to-brand-to" aria-hidden="true" />
++            <span className="size-2 rounded-full bg-primary" aria-hidden="true" />
+             Apps para el aula · 1.º a 6.º año
+           </motion.p>
+           <h1 className="display text-[clamp(1.4rem,10.2vw,12rem)] md:text-[clamp(1.6rem,9.2vw,12rem)]">
+diff --git a/src/components/home/HeroBackdrop.tsx b/src/components/home/HeroBackdrop.tsx
+index 5da1717..c622f8e 100644
+--- a/src/components/home/HeroBackdrop.tsx
++++ b/src/components/home/HeroBackdrop.tsx
+@@ -37,7 +37,7 @@ function BackdropVideo({ src }: { src: string }) {
+         ref={ref}
+         src={src}
+         poster={POSTER}
+-        className="absolute inset-0 -z-10 size-full object-cover"
++        className="absolute inset-0 -z-10 size-full object-cover saturate-50 brightness-75"
+         aria-hidden="true"
+         tabIndex={-1}
+         muted
+@@ -48,7 +48,7 @@ function BackdropVideo({ src }: { src: string }) {
+         preload={reduce ? 'metadata' : 'auto'}
+       />
+       {/* Capas para que el título se lea y el video se funda con el resto de la página */}
+-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-bg/20" />
++      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-bg/35" />
+       <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-48 bg-linear-to-b from-bg/85 to-transparent" />
+       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-2/5 bg-linear-to-t from-bg to-transparent" />
+     </>
+diff --git a/src/components/home/MathField.tsx b/src/components/home/MathField.tsx
+index e800cbe..99240de 100644
+--- a/src/components/home/MathField.tsx
++++ b/src/components/home/MathField.tsx
+@@ -9,9 +9,9 @@ interface Curve {
+ const SPAN = 14; // unidades de x visibles en pantalla
+ 
+ const curves: Curve[] = [
+-  { fn: (x, t, m) => Math.sin(x * 0.9 + t * 0.6) * (1.1 + m * 1.3), color: '#8b6dff' },
+-  { fn: (x, t) => 0.16 * x * x - 2.8 + Math.sin(t * 0.4) * 0.6, color: '#ff5ad9' },
+-  { fn: (x, t, m) => (m - 0.5) * 1.8 * x + Math.cos(t * 0.5) * 0.5, color: '#5ee6ff' },
++  { fn: (x, t, m) => Math.sin(x * 0.9 + t * 0.6) * (1.1 + m * 1.3), color: '#818cf8' },
++  { fn: (x, t) => 0.16 * x * x - 2.8 + Math.sin(t * 0.4) * 0.6, color: '#a78bfa' },
++  { fn: (x, t, m) => (m - 0.5) * 1.8 * x + Math.cos(t * 0.5) * 0.5, color: '#7dd3fc' },
+ ];
+ 
+ /**
+diff --git a/src/components/layout/Header.tsx b/src/components/layout/Header.tsx
+index 4182d2c..92580bf 100644
+--- a/src/components/layout/Header.tsx
++++ b/src/components/layout/Header.tsx
+@@ -38,7 +38,7 @@ export function Header() {
+       <div className="mx-auto max-w-5xl px-3 pt-3 md:px-6">
+         <div className={cn(panel, 'flex h-14 items-center justify-between gap-2 pl-4 pr-2')}>
+           <Link to="/" className="flex items-center gap-2 rounded-full font-bold">
+-            <span className="flex size-8 items-center justify-center rounded-full bg-linear-to-br from-brand-from to-brand-to text-white">
++            <span className="flex size-8 items-center justify-center rounded-full bg-primary text-primary-contrast">
+               <Sigma className="size-4" aria-hidden="true" />
+             </span>
+             {BRAND}
+diff --git a/src/components/ui/Button.tsx b/src/components/ui/Button.tsx
+index 0caf9a7..11fd62f 100644
+--- a/src/components/ui/Button.tsx
++++ b/src/components/ui/Button.tsx
+@@ -10,7 +10,7 @@ const base =
+ 
+ const variants: Record<ButtonVariant, string> = {
+   primary:
+-    'bg-linear-to-r from-brand-from to-brand-to text-white shadow-md hover:brightness-110 active:brightness-95',
++    'bg-primary text-primary-contrast shadow-md hover:bg-primary-hover',
+   secondary: 'border border-border-strong bg-surface/60 text-text backdrop-blur hover:bg-surface-2',
+   ghost: 'text-text hover:bg-surface-2',
+   danger: 'bg-danger text-danger-contrast hover:opacity-90',
+diff --git a/src/index.css b/src/index.css
+index aba74cc..711eed8 100644
+--- a/src/index.css
++++ b/src/index.css
+@@ -28,18 +28,18 @@
+   --color-text-muted: #4d4a66;
+ 
+   /* Marca: "primary" sirve para texto/acentos; el degradé de marca es para rellenos con texto blanco */
+-  --color-primary: #5b3df0;
+-  --color-primary-hover: #4a2ed6;
++  --color-primary: #4f46e5;
++  --color-primary-hover: #4338ca;
+   --color-primary-contrast: #ffffff;
+-  --color-brand-from: #5b3df0;
+-  --color-brand-to: #8e36e8;
++  --color-brand-from: #4f46e5;
++  --color-brand-to: #4f46e5;
+ 
+   /* Estados */
+   --color-success: #15803d;
+   --color-warning: #b45309;
+   --color-danger: #b91c1c;
+   --color-danger-contrast: #ffffff;
+-  --color-focus: #5b3df0;
++  --color-focus: #4f46e5;
+ 
+   /* Radios y sombras */
+   --radius-sm: 0.5rem;
+@@ -66,16 +66,16 @@
+   --color-border-strong: #8a8ca6;
+   --color-text: #f5f5fa;
+   --color-text-muted: #a9abc4;
+-  --color-primary: #a28bff;
+-  --color-primary-hover: #bba9ff;
++  --color-primary: #8b93ff;
++  --color-primary-hover: #a5abff;
+   --color-primary-contrast: #0b0614;
+   --color-success: #4ade80;
+   --color-warning: #fbbf24;
+   --color-danger: #f87171;
+   --color-danger-contrast: #1a0b0b;
+-  --color-focus: #bba9ff;
++  --color-focus: #a5abff;
+   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+-  --shadow-md: 0 16px 40px -12px rgb(124 92 255 / 0.45);
++  --shadow-md: 0 12px 32px -14px rgb(0 0 0 / 0.7);
+ }
+ 
+ @layer base {
+@@ -133,7 +133,7 @@
+ 
+   /* Texto con degradé metálico (solo para títulos grandes) */
+   .text-metal {
+-    background: linear-gradient(180deg, #ffffff 15%, #8f91ad 100%);
++    background: linear-gradient(180deg, #ffffff 30%, #b4b6cc 100%);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+@@ -141,7 +141,7 @@
+ 
+   /* Texto con degradé de marca */
+   .text-brand {
+-    background: linear-gradient(90deg, #a28bff, #ff7be5);
++    background: linear-gradient(90deg, #c7caff, #8b93ff);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index 66a6994..7ea7f09 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -81,7 +81,7 @@ export default function Home() {
+       <section data-theme="dark" className="relative isolate overflow-hidden bg-bg py-24 text-text md:py-40">
+         <div
+           aria-hidden="true"
+-          className="absolute left-1/2 top-1/2 -z-10 size-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/20 blur-3xl"
++          className="absolute left-1/2 top-1/2 -z-10 size-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-from/8 blur-3xl"
+         />
+         <Container className="text-center">
+           <p className="mb-6 text-sm font-semibold uppercase tracking-widest text-primary">¿Otra materia?</p>
+-- 
+2.43.0
+

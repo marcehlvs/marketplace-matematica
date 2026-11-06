@@ -9,9 +9,9 @@ interface Curve {
 const SPAN = 14; // unidades de x visibles en pantalla
 
 const curves: Curve[] = [
-  { fn: (x, t, m) => Math.sin(x * 0.9 + t * 0.6) * (1.1 + m * 1.3), color: '#818cf8' },
-  { fn: (x, t) => 0.16 * x * x - 2.8 + Math.sin(t * 0.4) * 0.6, color: '#a78bfa' },
-  { fn: (x, t, m) => (m - 0.5) * 1.8 * x + Math.cos(t * 0.5) * 0.5, color: '#7dd3fc' },
+  { fn: (x, t, m) => Math.sin(x * 0.9 + t * 0.6) * (1.1 + m * 1.3), color: '#d4d4d8' },
+  { fn: (x, t) => 0.16 * x * x - 2.8 + Math.sin(t * 0.4) * 0.6, color: '#737373' },
+  { fn: (x, t, m) => (m - 0.5) * 1.8 * x + Math.cos(t * 0.5) * 0.5, color: '#a3a3a3' },
 ];
 
 /**

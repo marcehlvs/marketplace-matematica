@@ -4,6 +4,7 @@ import { AppGrid } from '../components/AppGrid';
 import { Container, PageHeader } from '../components/layout/Page';
 import { Button } from '../components/ui/Button';
 import { Input, Select } from '../components/ui/Field';
+import { Tabs } from '../components/ui/Tabs';
 import { EmptyState } from '../components/ui/States';
 import { LEVELS, TOPICS } from '../config';
 import { useAsync } from '../hooks/useAsync';
@@ -40,7 +41,7 @@ export default function Catalog() {
         role="search"
         aria-label="Filtrar apps"
         onSubmit={(e) => e.preventDefault()}
-        className="mb-6 grid gap-3 md:grid-cols-[1fr_12rem_12rem]"
+        className="mb-6 grid gap-3 md:grid-cols-[1fr_14rem]"
       >
         <Input
           label="Buscar"
@@ -49,14 +50,6 @@ export default function Catalog() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Select label="Año" value={level} onChange={(e) => setLevel(e.target.value)}>
-          <option value="">Todos</option>
-          {LEVELS.map((l) => (
-            <option key={l} value={l}>
-              {l}
-            </option>
-          ))}
-        </Select>
         <Select label="Tema" value={topic} onChange={(e) => setTopic(e.target.value)}>
           <option value="">Todos</option>
           {TOPICS.map((t) => (
@@ -66,6 +59,14 @@ export default function Catalog() {
           ))}
         </Select>
       </form>
+
+      <Tabs
+        label="Filtrar por año"
+        value={level}
+        onChange={setLevel}
+        tabs={[{ id: '', label: 'Todos' }, ...LEVELS.map((l) => ({ id: l as string, label: l }))]}
+        className="mb-6"
+      />
 
       <p className="sr-only" aria-live="polite">
         {!loading && !error ? `${filtered.length} apps encontradas` : ''}

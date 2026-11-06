@@ -38,7 +38,7 @@ export function AppCover({
       aria-label={alt || undefined}
       aria-hidden={alt ? undefined : true}
       className={cn('flex h-36 w-full items-center justify-center text-white', className)}
-      style={{ background: `linear-gradient(135deg, hsl(${hue} 28% 24%), hsl(${(hue + 25) % 360} 32% 14%))` }}
+      style={{ background: `linear-gradient(135deg, hsl(${hue} 9% 24%), hsl(${(hue + 25) % 360} 10% 13%))` }}
     >
       <Icon className="size-14 opacity-90" aria-hidden="true" strokeWidth={1.5} />
     </div>

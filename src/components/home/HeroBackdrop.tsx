@@ -37,7 +37,7 @@ function BackdropVideo({ src }: { src: string }) {
         ref={ref}
         src={src}
         poster={POSTER}
-        className="absolute inset-0 -z-10 size-full object-cover saturate-50 brightness-75"
+        className="absolute inset-0 -z-10 size-full object-cover saturate-[.35] brightness-75"
         aria-hidden="true"
         tabIndex={-1}
         muted

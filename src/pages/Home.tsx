@@ -6,6 +6,8 @@ import { Marquee } from '../components/home/Marquee';
 import { Container } from '../components/layout/Page';
 import { CountUp } from '../components/motion/CountUp';
 import { Magnetic } from '../components/motion/Magnetic';
+import { Faq } from '../components/ui/Faq';
+import { faqs } from '../data/faqs';
 import { Reveal } from '../components/motion/Reveal';
 import { ScrollText } from '../components/motion/ScrollText';
 import { buttonClasses } from '../components/ui/Button';
@@ -77,6 +79,21 @@ export default function Home() {
           </Container>
         </section>
       )}
+
+      <section aria-labelledby="faq-titulo" className="pb-24 md:pb-32">
+        <Container>
+          <div className="mx-auto max-w-3xl">
+            <h2 id="faq-titulo" className="display mb-8 text-3xl md:text-5xl">
+              Preguntas
+            </h2>
+            <Faq items={faqs.slice(0, 4)} />
+            <Link to="/ayuda" className="mt-6 inline-flex items-center gap-2 font-medium text-text underline-offset-4 hover:underline">
+              Ver todas las preguntas
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </Container>
+      </section>
 
       <section data-theme="dark" className="relative isolate overflow-hidden bg-bg py-24 text-text md:py-40">
         <div

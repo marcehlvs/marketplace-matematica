@@ -180,3 +180,13 @@ firebase.json            Hosting (SPA) + Firestore
 - **Nada de controles sueltos**: botones, inputs, selects y modales siempre salen de `components/ui`.
 - Cada lista o formulario cubre **cargando / vacío / error / éxito**.
 - Imágenes con `alt` descriptivo; las decorativas con `alt=""`.
+
+## Sistema de UI (estilo EasyUI)
+
+La interfaz usa el lenguaje visual de [EasyUI](https://easyui.site) (MIT, Suraj Maurya): neutros monocromáticos, botón primario claro/oscuro sin degradés, radios `lg`, feedback de pulsación y tarjetas planas con borde fino. Los componentes se **adaptaron** a este proyecto (sin copiar el paquete): `Tabs` (AnimatedTabs), `Faq`, `StatCard`.
+
+- Tokens en `src/index.css` (`@theme` = claro, `[data-theme='dark']` = oscuro). Un solo acento: el propio `primary`.
+- `Tabs`: teclado completo (flechas, Inicio, Fin) y `role="tablist"`. Se usa en el panel admin y en el filtro de años del catálogo.
+- `Faq`: acordeón con `aria-expanded` / `aria-controls`; en Inicio y en `/ayuda`.
+- `StatCard`: métricas del panel admin, con estado de carga y de error ("—").
+- Con "reducir movimiento" activado se anulan las animaciones nuevas.

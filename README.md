@@ -190,3 +190,8 @@ La interfaz usa el lenguaje visual de [EasyUI](https://easyui.site) (MIT, Suraj 
 - `Faq`: acordeón con `aria-expanded` / `aria-controls`; en Inicio y en `/ayuda`.
 - `StatCard`: métricas del panel admin, con estado de carga y de error ("—").
 - Con "reducir movimiento" activado se anulan las animaciones nuevas.
+
+## Capturas, galería y demo
+- `scripts/capturar.mjs` (`npm run capturas`): saca capturas de escritorio y celular de cada app y las guarda en `public/capturas/` (ver PUBLICAR.md, paso 5b).
+- La página de cada app (`AppDetail`) muestra galería (`AppGallery`, con vista ampliada), demo en ventana (`AppDemo`, iframe con `sandbox`), lista de beneficios y una barra de compra fija en celular.
+- Campos nuevos en cada app: `screenshots` (lista) y `previewUrl` (demo). Si una imagen no carga, se omite sin dejar un hueco.

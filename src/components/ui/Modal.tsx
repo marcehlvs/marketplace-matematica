@@ -9,15 +9,17 @@ interface ModalProps {
   title: string;
   description?: string;
   children: ReactNode;
+  /** 'xl' para contenido grande (galería, demo). */
+  size?: 'md' | 'xl';
 }
 
 /** Modal accesible (Radix): foco atrapado, Esc para cerrar, roles aria resueltos. */
-export function Modal({ open, onOpenChange, title, description, children }: ModalProps) {
+export function Modal({ open, onOpenChange, title, description, children, size = 'md' }: ModalProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-black/60" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90dvh] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-border bg-surface p-5 shadow-md md:p-6">
+        <Dialog.Content className={'fixed left-1/2 top-1/2 z-50 max-h-[90dvh] w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-border bg-surface p-5 shadow-md md:p-6 ' + (size === 'xl' ? 'max-w-5xl' : 'max-w-lg')}>
           <div className="mb-4 flex items-start justify-between gap-4">
             <div>
               <Dialog.Title className="text-lg font-semibold text-text">{title}</Dialog.Title>

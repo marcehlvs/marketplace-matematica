@@ -66,6 +66,30 @@ Todo entra como **borrador y con precio $0**. Para cada app:
 
 Si dos repos son la misma app (por ejemplo `ecuaciones-modulo` y `EcuacionesConModulo`), dejá la mejor y no publiques la otra.
 
+## 5b. Capturas y demo de cada app
+
+**Capturas** (recomendado: una tarjeta con captura real vende mucho más que un ícono). Una sola vez:
+
+```
+npm i -D playwright
+npx playwright install chromium
+```
+
+Después, con el `catalogo-importado.json` del paso 5 ya generado:
+
+```
+npm run capturas
+```
+
+Abre cada app, saca una captura de escritorio y una de celular y las guarda en `public/capturas/`. Actualiza el JSON con `coverUrl` y `screenshots`; recién entonces hacés **Importar catálogo**. Si una app tarda en cargar: `node scripts/capturar.mjs --espera 6000`. Las que fallen se marcan con ✖ y podés repetir solo esas (las que ya tienen captura se saltean; `--forzar` las rehace).
+
+Las imágenes viajan con el sitio al hacer `npm run build` + deploy, así que no hace falta Firebase Storage.
+Para agregarlas a mano en una app: Admin → Apps → Editar → *Portada* y *Capturas* (una ruta por línea, por ejemplo `/capturas/derivadas-escritorio.jpg`).
+
+**Demo antes de comprar** (opcional). En Admin → Editar → *URL de la demo*. Se abre en una ventana dentro de la página de la app, con el botón "Probar demo".
+
+⚠️ La demo tiene que ser **otro despliegue, limitado** (por ejemplo, solo los primeros ejercicios). Si ponés la URL de la app completa, cualquiera puede usarla gratis. Para las apps pagas, lo más simple es una versión recortada en un repo/hosting aparte.
+
 ## 6. Publicar el sitio (Firebase Hosting)
 
 ```
@@ -89,5 +113,5 @@ Firebase → Hosting → **Agregar dominio personalizado** y seguí los pasos de
 - [ ] Todas las apps publicadas tienen precio, portada y URL que abre.
 
 ## Lo que todavía NO está resuelto
-- **Las apps siguen siendo públicas**: quien conozca la URL de GitHub Pages entra sin pagar. Ver "Plan para proteger las apps" en el README (hace falta saber dónde están publicadas).
+- **Las apps siguen siendo públicas** (el repo público es solo un requisito de GitHub Pages gratis; el problema real es que la URL de la app es abierta): quien conozca la URL de GitHub Pages entra sin pagar. Ver "Plan para proteger las apps" en el README (hace falta saber dónde están publicadas).
 - **Mercado Pago**: se agrega cuando pases al plan Blaze (ver README).

@@ -5,6 +5,14 @@ import type { AppData } from '../types';
  * Lee el JSON que genera `scripts/import-repos.mjs` y lo convierte en apps listas para guardar.
  * Siempre entran como BORRADOR y gratis: el precio y la publicación los decidís vos en el panel.
  */
+/** Acepta URL completa o ruta del propio sitio (/capturas/x.jpg). */
+function cleanPath(v: unknown): string | undefined {
+  return typeof v === 'string' && /^(https?:\/\/|\/[^/])/.test(v) ? v : undefined;
+}
+function cleanList(v: unknown): string[] {
+  return Array.isArray(v) ? v.map(cleanPath).filter((x): x is string => !!x).slice(0, 8) : [];
+}
+
 export function parseImportedApps(raw: string): AppData[] {
   let json: unknown;
   try {
@@ -28,6 +36,9 @@ export function parseImportedApps(raw: string): AppData[] {
         topics: Array.isArray(a.topics) ? a.topics.filter((t): t is string => typeof t === 'string').slice(0, 6) : [],
         price: 0,
         url: a.url,
+        ...(cleanPath(a.coverUrl) && { coverUrl: cleanPath(a.coverUrl) }),
+        ...(cleanList(a.screenshots).length && { screenshots: cleanList(a.screenshots) }),
+        ...(cleanPath(a.previewUrl) && { previewUrl: cleanPath(a.previewUrl) }),
         published: false,
         createdAt: typeof a.createdAt === 'number' ? a.createdAt : now,
       },

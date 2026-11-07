@@ -13,6 +13,10 @@ export interface AppData {
   price: number;
   url: string;
   coverUrl?: string;
+  /** Capturas de la app (rutas como /capturas/x.jpg o URLs). La primera es la principal. */
+  screenshots?: string[];
+  /** Versión de prueba (demo) que se abre antes de comprar. Debe ser un despliegue aparte y limitado. */
+  previewUrl?: string;
   published: boolean;
   createdAt: number;
 }

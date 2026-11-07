@@ -8,6 +8,11 @@ import { LEVELS, TOPICS } from '../../config';
 import { appsStore } from '../../services/catalog';
 import type { AppData, WithId } from '../../types';
 
+/** URL completa o ruta del propio sitio (por ejemplo /capturas/derivadas.jpg). */
+const pathOrUrl = z
+  .string()
+  .refine((v) => v === '' || /^(https?:\/\/\S+|\/[^/\s]\S*)$/.test(v), 'Ingresá una URL (https://…) o una ruta como /capturas/app.jpg');
+
 const schema = z.object({
   title: z.string().min(3, 'Mínimo 3 caracteres'),
   summary: z.string().min(10, 'Mínimo 10 caracteres').max(140, 'Máximo 140 caracteres'),
@@ -16,7 +21,9 @@ const schema = z.object({
   topics: z.string().min(1, 'Ingresá al menos un tema'),
   price: z.string().regex(/^\d+$/, 'Ingresá un número entero (0 = gratis)'),
   url: z.string().url('Ingresá una URL válida (https://…)'),
-  coverUrl: z.string().url('URL inválida').or(z.literal('')),
+  coverUrl: pathOrUrl,
+  screenshots: z.string(),
+  previewUrl: z.string().url('URL inválida').or(z.literal('')),
   published: z.boolean(),
 });
 
@@ -39,6 +46,8 @@ export function AppForm({ app, onSaved }: { app: WithId<AppData> | null; onSaved
       price: String(app?.price ?? 0),
       url: app?.url ?? '',
       coverUrl: app?.coverUrl ?? '',
+      screenshots: (app?.screenshots ?? []).join('\n'),
+      previewUrl: app?.previewUrl ?? '',
       published: app?.published ?? false,
     },
   });
@@ -56,6 +65,8 @@ export function AppForm({ app, onSaved }: { app: WithId<AppData> | null; onSaved
       price: Number(values.price),
       url: values.url,
       coverUrl: values.coverUrl || undefined,
+      screenshots: values.screenshots.split('\n').map((l) => l.trim()).filter(Boolean),
+      previewUrl: values.previewUrl || undefined,
       published: values.published,
     };
     try {
@@ -103,10 +114,24 @@ export function AppForm({ app, onSaved }: { app: WithId<AppData> | null; onSaved
       />
       <Input label="URL de la app" type="url" error={errors.url?.message} {...register('url')} />
       <Input
-        label="URL de la portada (opcional)"
-        type="url"
+        label="Portada (opcional)"
+        hint="URL o ruta del sitio, por ejemplo /capturas/derivadas.jpg"
         error={errors.coverUrl?.message}
         {...register('coverUrl')}
+      />
+      <Textarea
+        label="Capturas (opcional)"
+        hint="Una por línea. La primera es la principal."
+        rows={3}
+        error={errors.screenshots?.message}
+        {...register('screenshots')}
+      />
+      <Input
+        label="URL de la demo (opcional)"
+        type="url"
+        hint="Versión de prueba que se abre antes de comprar. Tiene que ser un despliegue aparte y limitado."
+        error={errors.previewUrl?.message}
+        {...register('previewUrl')}
       />
       <label className="flex items-center gap-3 py-1">
         <input type="checkbox" className="size-5 accent-primary" {...register('published')} />
